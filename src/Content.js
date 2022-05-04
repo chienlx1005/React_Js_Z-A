@@ -1,29 +1,31 @@
-import { useEffect, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 function Content(){
-    const [avt,setAvt] = useState();
+    const [count,setCount] = useState(60);
 
-    useEffect(( ) => {
-        return()=> {
-            avt && URL.revokeObjectURL(avt.pre)
-        }
-    },[avt])
+    const ref = useRef();
+    const preCount = useRef()
 
-    const handleImg = (e) => {
-
-        const file = e.target.files[0]
-        file.pre  = URL.createObjectURL(file)
-
-        setAvt(file)
+    useEffect(() => {
+        preCount.current = count;
+    },[count])
+    const handleStart = () => {
+        ref.current = setInterval(()=>{
+            setCount(prevCount => prevCount -1)
+        },1000)
     }
+    const handleStop=() => {
+        clearInterval(ref.current)
+    }
+    console.log(count,preCount.current)
+
+   
 
     return(
-        <div>
-           <input
-           type="file"
-           onChange={handleImg}
-           />
-           {avt && (<img src={avt.pre} alt="" width="80%"/>)}
+        <div style={{padding: 20}}>
+         <h1>{count}</h1>
+         <button onClick={(()=> handleStart())}>Start</button>
+         <button onClick={(()=> handleStop())}>Stop</button>
         </div>
     )
 }

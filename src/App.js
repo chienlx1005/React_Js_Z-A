@@ -1,11 +1,20 @@
 import Content from "./Content";
-import "./App.css";
-
+import TodoList from "./TodoList";
+import "./App.scss";
 
 
 function App() {
   return (
-    <Content/>
+ 
+     
+    <>
+    <div className="App">
+      <TodoList/>
+    </div>
+       
+        </>
+   
+
   );
 }
 

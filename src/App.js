@@ -1,16 +1,20 @@
-import { useState } from "react";
 import Content from "./Content";
-import "./App.css";
-
+import TodoList from "./TodoList";
+import "./App.scss";
 
 
 function App() {
-  const [show,setShow] = useState(false)
   return (
-    <div className="App" >
-      <button onClick={() => setShow(!show)}>toggle</button>
-      {show && <Content/>}
+ 
+     
+    <>
+    <div className="App">
+      <TodoList/>
     </div>
+       
+        </>
+   
+
   );
 }
 
